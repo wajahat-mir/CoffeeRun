@@ -153,5 +153,11 @@ namespace CoffeeRun.Controllers
             await _runRepository.SetRunner(id, user.UserName);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> MarkComplete(int id)
+        {
+            await _runRepository.SetRunStatus(id, RunStatus.Complete);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

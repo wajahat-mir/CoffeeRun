@@ -46,8 +46,9 @@
                 <a asp-action="Index" asp-controller="Orders" asp-route-id="@item.RunId">View Current Orders | </a>
                 @if (item.TimeToRun > DateTime.Now)
                 {
-                    <a asp-action="MakeMeRunner" asp-controller="Runs" asp-route-id="@item.RunId">Make me the Runner</a>
+                    <a asp-action="MakeMeRunner" asp-controller="Runs" asp-route-id="@item.RunId">Make me the Runner | </a>
                 }
+                <a asp-action="MarkComplete" asp-controller="Runs" asp-route-id="@item.RunId">Mark as Complete</a>
             </td>
             </tr>
         }
