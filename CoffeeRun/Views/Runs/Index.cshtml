@@ -1,0 +1,17 @@
+﻿@model  CoffeeRun.ViewModels.RunIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+<p>
+    <a asp-controller="Runs" asp-action="UpdateHistorical">@Model.historicalLabel</a>
+</p>
+<p>
+    @await Component.InvokeAsync("RunList", new { historical = Model.historicalFlag })
+</p>
+

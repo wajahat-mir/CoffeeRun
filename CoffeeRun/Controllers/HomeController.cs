@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CoffeeRun.Models;
+using CoffeeRun.ViewModels;
+using AutoMapper;
 
 namespace CoffeeRun.Controllers
 {

@@ -12,6 +12,11 @@ using Microsoft.EntityFrameworkCore;
 using CoffeeRun.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CoffeeRun.Repositories;
+using AutoMapper;
+using CoffeeRun.Models;
+using CoffeeRun.Profiles;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CoffeeRun
 {
@@ -34,13 +39,36 @@ namespace CoffeeRun
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddTransient<IFriendRepository, FriendRepository>();
+            services.AddTransient<IRunRepository, RunRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IRequestRepository, RequestRepository>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +88,7 @@ namespace CoffeeRun
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
