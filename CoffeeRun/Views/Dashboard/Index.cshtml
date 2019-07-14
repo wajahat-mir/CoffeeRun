@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CoffeeRun.ViewModels.DashboardViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeToRun)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.runStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Runner)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeToRun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.runStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Runner)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

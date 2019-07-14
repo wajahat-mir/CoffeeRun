@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CoffeeRun.ViewModels.FriendViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>|<a asp-controller="Friends" asp-action="Index">View Friends</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FriendUniqueName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FriendUniqueName)
+            </td>
+            <td>
+                <a asp-controller="Requests" asp-action="Confirm" asp-route-id="@item.FriendId">Confirm Request</a>|
+                <a asp-controller="Requests" asp-action="Revoke" asp-route-id="@item.FriendId">Reject Request</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

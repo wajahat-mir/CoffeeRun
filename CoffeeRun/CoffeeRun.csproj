@@ -6,8 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20190701224640_InitialMigration.cs" />
+    <Compile Remove="Data\Migrations\20190701224640_InitialMigration.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190701230148_CorrectedForeignKeyMigration.cs" />
+    <Compile Remove="Data\Migrations\20190701230148_CorrectedForeignKeyMigration.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190701230339_CorrectedForeignKeyMigrationv2.cs" />
+    <Compile Remove="Data\Migrations\20190701230339_CorrectedForeignKeyMigrationv2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190701230941_InitialMigration.cs" />
+    <Compile Remove="Data\Migrations\20190701230941_InitialMigration.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190702000000_InitialMigration.cs" />
+    <Compile Remove="Data\Migrations\20190702000000_InitialMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Requests\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
